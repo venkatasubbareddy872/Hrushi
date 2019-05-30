@@ -1,6 +1,7 @@
 <aura:component controller="BH_OtherAccountDetails" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName">
     
     <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="storeRecId" type="String" />
     <aura:attribute name="isSearchCoPay" type="Boolean"/>
     <aura:attribute name="isSearchCcoach" type="Boolean"/>
     <aura:attribute name="copay" type="User_Copay__c[]"/>
