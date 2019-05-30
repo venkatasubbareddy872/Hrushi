@@ -1,0 +1,25 @@
+<apex:page standardController="Customer__c" extensions="CustomerReceipt" renderAs="pdf">
+    <apex:form >
+    <apex:pageBlock >
+   <!--<apex:image url="{!$Resource.SPm}"/>-->
+    </apex:pageBlock><br/><br/>
+     <apex:outputfield value="{!ac.Customer_Name__c}"/><br/>
+        <apex:pageBlock >
+           <apex:pageBlockTable value="{!rp}" var="cr" border="1" width="710" style="text-align:center">
+                <apex:column headerValue="Receipt No"><apex:outputfield value="{!cr.name}"/></apex:column>
+                <apex:column headerValue="Customer Id"><apex:outputfield value="{!cr.Customer__c}"/></apex:column>
+                 <apex:column headerValue="Date of Paid"><apex:outputField value="{!cr.Date_of_Paid__c}"/></apex:column>
+                <apex:column headerValue="Payments in Terms"><apex:outputField value="{!cr.Payments_in_Terms1__c}"/></apex:column>
+                <apex:column headerValue="Customer Plan"><apex:outputField value="{!cr.Customer_Plan__c}"/></apex:column>
+                <apex:column headerValue="Amount" style="text-align:right"><apex:outputField value="{!cr.Amount__c}" /></apex:column>
+          </apex:pageBlockTable><br/>
+          <table width="100%">
+              <tr>
+                  <td width="88%" align="right"><b>Total Amount</b></td><td width="30%" align="right"><apex:outputField value="{!ac.Paid_Total_Amount__c}"/></td>
+              </tr>
+          </table>
+          
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

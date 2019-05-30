@@ -1,0 +1,31 @@
+<apex:page standardController="Agent__c" extensions="CustomerInformation" renderAs="pdf">
+    <apex:form >
+    <apex:pageBlock >
+   
+   <!-- <table width="100%">
+        <tr>
+            <td width="50%">
+                <apex:image url="{!$Resource.SPm}"/> 
+             </td>
+         </tr>
+    </table>-->
+    </apex:pageBlock><br/><br/>
+     <b>Agent Name</b>&nbsp;&nbsp;<apex:outputfield value="{!ac.Name}"/><br/><br/>
+
+        <apex:pageBlock >
+           <apex:pageBlockTable value="{!cu}" var="cr" border="1" width="710" style="text-align:center">
+                <apex:column headerValue="Customer Id"><apex:outputfield value="{!cr.Name}"/></apex:column>
+                <apex:column headerValue="Customer Nmae"><apex:outputField value="{!cr.Customer_Name__c}"/></apex:column>
+                <apex:column headerValue="Customer Plan"><apex:outputField value="{!cr.Customer_Plan__c}"/></apex:column>
+                <apex:column headerValue="Joining Date"><apex:outputField value="{!cr.Joining_Date__c}"/></apex:column>
+                <apex:column headerValue="Amount" style="text-align:right"><apex:outputField value="{!cr.Paid_Total_Amount__c}"/></apex:column>
+           </apex:pageBlockTable>
+            <table width="100%">
+              <tr>
+                  <td width="88%" align="right"><b>Total Amount</b></td><td width="30%" align="right"><apex:outputField value="{!ac.Customer_Collected_Amount__c}"/></td>
+              </tr>
+          </table>
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

@@ -1,0 +1,71 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="FieldSetController">
+    <aura:attribute name="recordTypeId" type="String"/> 
+    <aura:attribute name="objectApiName" type="String"/> 
+    <aura:attribute name="fields" type="FieldSetMember[]"/>  
+    <aura:attribute name="fieldSetName" type="String"/> 
+    <aura:attribute name="iconName" type="String"/>
+    <aura:attribute name="title" type="String"/> 
+    <aura:attribute name="mode" type="String"/> 
+    <aura:attribute name="inputModeBool" type="Boolean" default="false"/> 
+    <aura:attribute name="recordId" type="id"  />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    
+    <lightning:recordEditForm aura:id="recordViewForm" 
+                              recordId="{!v.recordId}"
+                              objectApiName="{!v.objectApiName}"
+                              onsubmit="{!c.fireRefreshView}" 
+                              onsuccess="{!c.onSaveClick}"  
+                              class="slds-p-around--small" >
+        <!-- recordTypeId="{!v.recordTypeId}" -->
+        <lightning:messages />
+        
+        
+        <lightning:layout multipleRows="true"  horizontalAlign="spread" >
+            
+            
+            <aura:iteration items="{!v.fields}" var="field">
+                
+                <aura:if isTrue="{!v.inputModeBool == true? true: false}">
+                    
+                    <lightning:layoutitem size="6" padding="around-small" >
+                        <lightning:inputField fieldName="{!field.fieldPath}"/>
+                    </lightning:layoutitem>
+                    
+                </aura:if>
+                
+                <aura:if isTrue="{!v.inputModeBool != true? true: false}">
+                    
+                    <lightning:layoutitem size="4" padding="around-small" >
+                        <div onmouseover="{!c.UpdateColor}">
+                        <lightning:outputField fieldName="{!field.fieldPath}"/>
+                        </div>
+                    </lightning:layoutitem>
+                    <lightning:layoutitem size="2" padding="around-small">
+                        <lightning:buttonIcon aura:id="imgOver" iconName="utility:edit" variant="bare"
+                                              class="slds-button_icon"
+                                              alternativeText="edit"
+                                              onclick="{!c.handleToggle}" />
+                    </lightning:layoutitem>
+                    
+                    
+                </aura:if> 
+            </aura:iteration>
+            
+            
+        </lightning:layout> 
+        <div class="slds-align--absolute-center slds-p-top--small">
+            <span class="{!and(v.inputModeBool)? '':'slds-hide'}">
+                <lightning:button variant="neutral" class="slds-m-horizontal--xx-small"
+                                  name="Cancel" 
+                                  label="Cancel" onclick="{!c.handleToggle}"/>
+            </span>
+            <span class="{!v.inputModeBool == true? '': 'slds-hide'}">
+                <lightning:button variant="brand" class="slds-m-horizontal--xx-small"
+                                  type="submit" name="update"    
+                                  label="{!empty(v.recordId)?'Create':'Update'}" />
+            </span>
+        </div>
+    </lightning:recordEditForm>
+    
+</aura:component>

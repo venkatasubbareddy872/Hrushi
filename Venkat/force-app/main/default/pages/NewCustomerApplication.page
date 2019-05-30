@@ -1,0 +1,51 @@
+<apex:page standardController="Customer__c" sidebar="false" extensions="NewCustomerApplication">
+    <apex:form >
+        <apex:pageBlock >
+        <apex:pageBlockButtons ><apex:commandButton value="Save" action="{!save}"/><apex:commandButton value="Save & New" action="{!SaveNew}"/><apex:commandButton value="Cancel" action="{!cancel}"/></apex:pageBlockButtons>
+       
+            <apex:pageblockSection title="Customer Information">
+                <apex:inputField value="{!Cust.Customer_Name__c}"/> 
+                <apex:inputField value="{!Cust.Agent_Id__c}"/> 
+                <apex:inputField value="{!Cust.Customer_Father_Name__c}"/> 
+                <apex:inputField value="{!Cust.Branch_Code__c}"/> 
+                <apex:inputField value="{!Cust.Age__c}"/> 
+                <apex:inputField value="{!Cust.Sex__c}"/>
+                <apex:inputField value="{!Cust.Customer_Phone_No__c}"/>
+                <apex:inputField value="{!Cust.Date_of_Birth__c}"/> 
+          </apex:pageblockSection><br/>
+            
+            <apex:pageblockSection >
+                <apex:inputField value="{!Cust.Customer_Plan__c}"/> 
+                <apex:inputField value="{!Cust.Joining_Date__c}"/> 
+                <apex:inputField value="{!Cust.IPP_Plans__c}"/> 
+                
+                <apex:inputField value="{!Cust.Payment_In_Terms__c}"/> 
+            </apex:pageblockSection><br/>
+            
+             <apex:pageblockSection >
+                <apex:inputField value="{!Cust.Street__c}"/> 
+                
+                <apex:inputField value="{!Cust.City__c}"/> 
+                
+                <apex:inputField value="{!Cust.State__c}"/> 
+             
+                <apex:inputField value="{!Cust.Postal_Code__c}"/> 
+               
+                <apex:inputField value="{!Cust.Country__c}"/>
+                
+            </apex:pageblockSection><br/>
+            
+            <apex:pageblockSection >
+                <apex:inputField value="{!Cust.Nominee_Name__c}"/> 
+                <apex:inputField value="{!Cust.Nominee_Street__c}"/> 
+                <apex:inputField value="{!Cust.Nominee_Age__c}"/> 
+                <apex:inputField value="{!Cust.Nominee_City__c}"/> 
+                <apex:inputField value="{!Cust.Nominee_Relationship__c}"/> 
+                <apex:inputField value="{!Cust.Nominee_State__c}"/> 
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                <apex:inputField value="{!Cust.Nominee_Postal_Code__c}"/> 
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+           </apex:pageblockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

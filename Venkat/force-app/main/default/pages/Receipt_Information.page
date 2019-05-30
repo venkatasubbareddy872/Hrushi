@@ -1,0 +1,58 @@
+<apex:page standardController="Receipt__c" sidebar="false"  renderAs="pdf">
+    <apex:form >
+    <apex:pageBlock ></apex:pageBlock><br/><br/> <br/><br/> <br/><br/>  <br/><br/> 
+         <apex:pageBlock >
+         <table width="100%">
+             <tr>
+                 
+                 <td><!--<apex:image value="{!$Resource.SPm}"/>--></td> <td align="right" style="font-size:9pt"><b>Date:&nbsp;</b><apex:outputField value="{!Receipt__c.Date_of_Paid__c}"/></td>
+             </tr>
+       </table>
+       
+       <table border="0">
+         <tr>
+         <td>
+        <table width="100%">
+            <tr>
+                <td width="5%" style="font-size:9pt"><b>Receipt No:</b></td><td width="5%" style="font-size:9pt"><apex:outputField value="{!Receipt__c.name}"/></td>
+                <td width="25%"  align="right" style="font-size:9pt"><b>Customer Name:</b></td><td width="15%" style="font-size:9pt"><apex:outputField value="{!Receipt__c.Customer_Name__c}"/></td>
+           </tr>
+       </table>   <br/>
+           
+        <table width="100%">    
+            <tr> 
+                <td width="5%" style="font-size:9pt"><b>Type Amount:</b></td><td width="15%" style="font-size:9pt"><apex:outputField value="{!Receipt__c.Type_Amount__c}"/> </td>
+                <td width="12%"  align="right" style="font-size:9pt"><b>Agent Id:</b></td><td width="15%" style="font-size:9pt"> <apex:outputField value="{!Receipt__c.Agent_Name__c}"/></td>
+            </tr>
+         </table>   <br/>
+           
+        <table width="100%">  
+            
+            <tr> 
+              
+                <td width="5%" style="font-size:9pt"><b>Customer No: </b></td><td width="15%" style="font-size:9pt"><apex:outputField value="{!Receipt__c.Customer__c}"/></td>
+                <td width="12%" align="right" style="font-size:9pt"><b>Amount: </b></td><td width="15%" style="font-size:9pt"><apex:outputField value="{!Receipt__c.Amount__c}"/></td>
+            </tr>
+       </table>    <br/>
+           
+        <table width="100%">     
+            <tr> 
+                
+                <td  style="font-size:9pt"><b>Received With Thankas a Sumof&nbsp;<apex:outputField value="{!Receipt__c.Amount__c}"/>&nbsp; Only Towards Land Purchase Scheme</b></td> 
+            </tr>    
+      </table> <br/>
+      
+       <table width="100%">  
+            
+            <tr> 
+              
+                <td width="12%" ><b>Aggent signature:</b></td><td width="15%"><hr size="1"/></td>
+                <td width="12%" align="right" ><b>Received Signature:</b></td><td width="15%"><hr size="1"/></td>
+            </tr>
+       </table>  
+   </td>
+   </tr>  
+   </table>  
+   </apex:pageBlock>  
+   </apex:form>
+</apex:page>

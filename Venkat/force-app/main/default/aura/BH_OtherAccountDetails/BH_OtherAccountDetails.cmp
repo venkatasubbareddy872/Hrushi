@@ -1,0 +1,634 @@
+<aura:component controller="BH_OtherAccountDetails" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName">
+    
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="isSearchCoPay" type="Boolean"/>
+    <aura:attribute name="isSearchCcoach" type="Boolean"/>
+    <aura:attribute name="copay" type="User_Copay__c[]"/>
+    <aura:attribute name="ccoach" type="College_Coach_Topic_Elections__c[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />  
+    <aura:attribute name="Acc" type="Account[]"/>  
+    <aura:attribute name="copayName" type="String"/>
+    <aura:attribute name="ccoachName" type="String"/>
+    <aura:attribute name="saveState" type="String" default="UNSAVED" />
+    <aura:dependency resource="markup://force:editRecord" type="EVENT" />
+    <aura:handler name="handleEdit" event="force:editRecord" action="{!c.editRecord}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <lightning:button label="Print" onclick="{!c.print}"/>
+    <ui:button class="btn" label="Edit" press="{!c.editRecord}"/>      
+    
+    <aura:iteration items="{!v.Acc}" var="itm">
+        <div class="slds-p-around--large">
+            
+            <div class="slds-page-header" style="cursor: pointer;" onclick="{!c.sectionOne}">
+                <section class="slds-clearfix">
+                    <div class="slds-float--left ">
+                        <lightning:icon class="slds-hide" aura:id="articleOne" iconName="utility:add" size="x-small" alternativeText="Indicates add"/>
+                        <lightning:icon class="slds-show" aura:id="articleOne" iconName="utility:dash" size="x-small" alternativeText="Indicates dash"/>
+                    </div>
+                    <div class="slds-m-left--large">PROGRAM OVERVIEW</div>
+                </section>
+            </div>
+            
+            <div class="slds-show slds-p-around--medium" aura:id="articleOne">
+                <div class="slds-box slds-theme_default">
+                	<c:BH_OtherAccountDetailsForm recordId="{!v.recordId}" objectApiName="Account" fieldSetName="Property" inputModeBool="false" />
+                </div>    
+            </div>            
+            <div class="slds-page-header" style="cursor: pointer;" onclick="{!c.sectionTwo}">
+                <section class="slds-clearfix">
+                    <div class="slds-float--left ">
+                        <lightning:icon class="slds-hide" aura:id="articleTwo" iconName="utility:add" size="x-small" alternativeText="Indicates add"/>
+                        <lightning:icon class="slds-show" aura:id="articleTwo" iconName="utility:dash" size="x-small" alternativeText="Indicates dash"/>
+                    </div>
+                    <div class="slds-m-left--large">CLIENT COMMUNICATION PREFERENCES</div>
+                </section>
+            </div>
+            
+            <div class="slds-show slds-p-around--medium" aura:id="articleTwo">
+                <div class="slds-box slds-theme_default">
+                	<c:BH_OtherAccountDetailsForm recordId="{!v.recordId}" objectApiName="Account" fieldSetName="Property" inputModeBool="false" />
+                </div>
+            </div>
+            
+            <div class="slds-page-header"  style="cursor: pointer;" onclick="{!c.sectionThree}">
+                <section class="slds-clearfix">
+                    <div class="slds-float--left"> 
+                        <lightning:icon class="slds-hide" aura:id="articleThree" iconName="utility:add" size="x-small" alternativeText="Indicates add"/>
+                        <lightning:icon class="slds-show" aura:id="articleThree" iconName="utility:dash" size="x-small" alternativeText="Indicates dash"/>
+                    </div>
+                    <div class="slds-m-left--large">USER REGISTRATION</div>
+                </section>
+            </div>
+            
+            <div class="slds-show slds-p-around--medium" aura:id="articleThree">
+                <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account">
+                    <div class="slds-box slds-theme_default">
+                        <table>
+                            <tr>
+                                <th><lightning:outputField fieldName="ConsolidatedClientSiteURL__c"/></th>
+                                <th><lightning:outputField fieldName="BHCA_URL__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="EdAssist_URL__c" /></th>
+                                <th><lightning:outputField fieldName="BUCA_URL__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="EdAssistNetworkLandingPageURL__c" /></th>
+                                <th><lightning:outputField fieldName="BUCA_User_Name__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="EdAssist_Phone_Number__c" /></th>
+                                <th><lightning:outputField fieldName="BUCA_Password__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="BUCA_Phone__c" /></th>
+                                <th><lightning:outputField fieldName="Sittercity_URL__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Special_Needs_URL__c" /></th>
+                                <th><lightning:outputField fieldName="College_Coach_URL__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Special_Needs_URL_Embedded_Passcode__c" /></th>
+                                <th><lightning:outputField fieldName="Center_URL__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="College_Coach_Passcode__c" /></th>
+                                <th><lightning:outputField fieldName="Center_2_URL__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Special_Needs_Passcode__c" /></th>
+                                <th><lightning:outputField fieldName="Center_3_URL__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="College_Coach_Email__c" /></th>
+                                <th><lightning:outputField fieldName="Center_4_URL__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="College_Coach_Phone__c" /></th>
+                                <th><lightning:outputField fieldName="Center_5_URL__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Yoopies_URL__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="MindMe_URL__c" /></th>
+                            </tr>
+                        </table>
+                    </div>
+                </lightning:recordViewForm>
+            </div>
+            
+            <div class="slds-page-header"  style="cursor: pointer;" onclick="{!c.sectionFour}">
+                <section class="slds-clearfix">
+                    <div class="slds-float--left"> 
+                        <lightning:icon class="slds-hide" aura:id="articleFour" iconName="utility:add" size="x-small" alternativeText="Indicates add"/>
+                        <lightning:icon class="slds-show" aura:id="articleFour" iconName="utility:dash" size="x-small" alternativeText="Indicates dash"/>
+                    </div>
+                    <div class="slds-m-left--large">Back-Up Care</div>
+                </section>
+            </div>
+            
+            <div class="slds-show slds-p-around--medium" aura:id="articleFour">
+                <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account">
+                    <div class="slds-box slds-theme_default">
+                        <table>
+                            <tr>
+                                <th><lightning:outputField fieldName="CareDirect_Program__c"/></th>
+                                <th><lightning:outputField fieldName="BUCA_Type__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="BUCA_Program_Name__c" /></th>
+                                <th><lightning:outputField fieldName="Emergency_Care_Only__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Adult_Elder_Program__c" /></th>
+                                <th><lightning:outputField fieldName="Self_Care__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="BH_Center_Based_Care_Network_Program__c" /></th>
+                                <th><lightning:outputField fieldName="Consecutive_Days__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="BH_Center_Based_Care_Network_Program__c" /></th>
+                                <th><lightning:outputField fieldName="Consecutive_Days__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Extended_Center_Based_Care_Network_Prog__c" /></th>
+                                <th><lightning:outputField fieldName="Reservation_Window__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="In_Home_Child_Care_Program__c" /></th>
+                                <th><lightning:outputField fieldName="Includes_UK_BUCA__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="In_Home_Mildy_Ill_Child_Care_Program__c" /></th>
+                                <th><lightning:outputField fieldName="Includes_Canada_BUCA__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Mobile_App__c" /></th>
+                                <th><lightning:outputField fieldName="Crisis_Care_Assist__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Hold_to_Use__c" /></th>
+                                <th><lightning:outputField fieldName="My_Care_Assist__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="HTU_Notes__c" /></th>
+                                <th><lightning:outputField fieldName="Imputed_Income__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Imputed_Income_Notes__c" /></th>
+                                <th><lightning:outputField fieldName="Allow_for_Higher_Ed__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Back_Up_Launch_Date__c" /></th>
+                            </tr>
+                        </table>
+                    </div>
+                </lightning:recordViewForm>
+            </div>
+            
+            <div class="slds-page-header"  style="cursor: pointer;" onclick="{!c.sectionFive}">
+                <section class="slds-clearfix">
+                    <div class="slds-float--left"> 
+                        <lightning:icon class="slds-hide" aura:id="articleFive" iconName="utility:add" size="x-small" alternativeText="Indicates add"/>
+                        <lightning:icon class="slds-show" aura:id="articleFive" iconName="utility:dash" size="x-small" alternativeText="Indicates dash"/>
+                    </div>
+                    <div class="slds-m-left--large">Return-to-Work Care</div>
+                </section>
+            </div>
+            
+            <div class="slds-show slds-p-around--medium" aura:id="articleFive">
+                <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account">
+                    <div class="slds-box slds-theme_default">
+                        <table>
+                            <tr>
+                                <th><lightning:outputField fieldName="Infant_Transition_Program__c"/></th>
+                                <th><lightning:outputField fieldName="ITP_Eligibility_Timeframe__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Infant_Welcome_Package_Program__c" /></th>
+                                <th><lightning:outputField fieldName="ITP_Notes__c" /></th>
+                            </tr>
+                        </table>
+                    </div>
+                </lightning:recordViewForm>
+            </div>
+            
+            <div class="slds-page-header"  style="cursor: pointer;" onclick="{!c.sectionSix}">
+                <section class="slds-clearfix">
+                    <div class="slds-float--left"> 
+                        <lightning:icon class="slds-hide" aura:id="articleSix" iconName="utility:add" size="x-small" alternativeText="Indicates add"/>
+                        <lightning:icon class="slds-show" aura:id="articleSix" iconName="utility:dash" size="x-small" alternativeText="Indicates dash"/>
+                    </div>
+                    <div class="slds-m-left--large">Priority Access and Tuition Subsidies</div>
+                </section>
+            </div>
+            
+            <div class="slds-show slds-p-around--medium" aura:id="articleSix">
+                <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account">
+                    <div class="slds-box slds-theme_default">
+                        <table>
+                            <tr>
+                                <th><lightning:outputField fieldName="Ctr_Specific_5_locations_discount__c"/></th>
+                                <th><lightning:outputField fieldName="Discount_Program_with_admin_fee__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Ctr_Specific_5_locations_no_discount__c" /></th>
+                                <th><lightning:outputField fieldName="Discount_Program_without_admin_fee__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="PA_Regional_or_National_discount__c" /></th>
+                                <th><lightning:outputField fieldName="Tuition_Subsidy__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="PA_Regional_or_National_no_discount__c" /></th>
+                                <th><lightning:outputField fieldName="Tuition_Payment_Program_Launch_Date__c" /></th>
+                            </tr>
+                        </table>
+                    </div>
+                </lightning:recordViewForm>
+            </div>
+            
+            <div class="slds-page-header"  style="cursor: pointer;" onclick="{!c.sectionSeven}">
+                <section class="slds-clearfix">
+                    <div class="slds-float--left"> 
+                        <lightning:icon class="slds-hide" aura:id="articleSeven" iconName="utility:add" size="x-small" alternativeText="Indicates add"/>
+                        <lightning:icon class="slds-show" aura:id="articleSeven" iconName="utility:dash" size="x-small" alternativeText="Indicates dash"/>
+                    </div>
+                    <div class="slds-m-left--large">Additional Family Supports</div>
+                </section>
+            </div>
+            
+            <div class="slds-show slds-p-around--medium" aura:id="articleSeven">
+                <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account">
+                    <div class="slds-box slds-theme_default">
+                        <table>
+                            <tr>
+                                <th><lightning:outputField fieldName="CareDirect_Program__c"/></th>
+                                <th><lightning:outputField fieldName="Bright_Study__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="SitterCity__c" /></th>
+                                <th><lightning:outputField fieldName="Includes_UK_CareDirect__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Years_Ahead__c" /></th>
+                                <th><lightning:outputField fieldName="Preferred_Enrollment__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Tuition_Discounts__c" /></th>
+                                <th><lightning:outputField fieldName="Additional_Family_Support_Launch_Date__c" /></th>
+                            </tr>
+                        </table>
+                    </div>
+                </lightning:recordViewForm>
+            </div>
+            
+            <div class="slds-page-header"  style="cursor: pointer;" onclick="{!c.sectionEight}">
+                <section class="slds-clearfix">
+                    <div class="slds-float--left"> 
+                        <lightning:icon class="slds-hide" aura:id="articleEight" iconName="utility:add" size="x-small" alternativeText="Indicates add"/>
+                        <lightning:icon class="slds-show" aura:id="articleEight" iconName="utility:dash" size="x-small" alternativeText="Indicates dash"/>
+                    </div>
+                    <div class="slds-m-left--large">Educational And College Advising</div>
+                </section>
+            </div>
+            
+            <div class="slds-show slds-p-around--medium" aura:id="articleEight">
+                <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account">
+                    <div class="slds-box slds-theme_default">
+                        <table>
+                            <tr>
+                                <th><lightning:outputField fieldName="CC_Madness_Program__c"/></th>
+                                <th><lightning:outputField fieldName="CC1000__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="College_Coach_Program__c" /></th>
+                                <th><lightning:outputField fieldName="CC500__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Learning_Center__c" /></th>
+                                <th><lightning:outputField fieldName="Spotlight__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="College_Coach_Units__c" /></th>
+                                <th><lightning:outputField fieldName="Revolution_Prep__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="ECA_Live_Event_Material__c" /></th>
+                                <th><lightning:outputField fieldName="Education_College_Advising_Launch_Date__c" /></th>
+                            </tr>
+                        </table>
+                    </div>
+                </lightning:recordViewForm>
+            </div>
+            
+            <div class="slds-page-header"  style="cursor: pointer;" onclick="{!c.sectionNine}">
+                <section class="slds-clearfix">
+                    <div class="slds-float--left"> 
+                        <lightning:icon class="slds-hide" aura:id="articleNine" iconName="utility:add" size="x-small" alternativeText="Indicates add"/>
+                        <lightning:icon class="slds-show" aura:id="articleNine" iconName="utility:dash" size="x-small" alternativeText="Indicates dash"/>
+                    </div>
+                    <div class="slds-m-left--large">OTHER PROGRAMS</div>
+                </section>
+            </div>
+            
+            <div class="slds-show slds-p-around--medium" aura:id="articleNine">
+                <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account">
+                    <div class="slds-box slds-theme_default">
+                        <table>
+                            <tr>
+                                <th><lightning:outputField fieldName="Bright_Horizons_Special_Needs__c"/></th>
+                                <th><lightning:outputField fieldName="Legacy_Sitter_City__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Special_Needs_Advising__c" /></th>
+                                <th><lightning:outputField fieldName="Special_Needs_Launch_Date__c" /></th>
+                            </tr>
+                        </table>
+                    </div>
+                </lightning:recordViewForm>
+            </div>
+            
+            <div class="slds-page-header"  style="cursor: pointer;" onclick="{!c.sectionTen}">
+                <section class="slds-clearfix">
+                    <div class="slds-float--left"> 
+                        <lightning:icon class="slds-hide" aura:id="articleTen" iconName="utility:add" size="x-small" alternativeText="Indicates add"/>
+                        <lightning:icon class="slds-show" aura:id="articleTen" iconName="utility:dash" size="x-small" alternativeText="Indicates dash"/>
+                    </div>
+                    <div class="slds-m-left--large">EDASSIST</div>
+                </section>
+            </div>
+            
+            <div class="slds-show slds-p-around--medium" aura:id="articleTen">
+                <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account">
+                    <div class="slds-box slds-theme_default">
+                        <table>
+                            <tr>
+                                <th><lightning:outputField fieldName="Tuition_Assistance_Administration__c"/></th>
+                                <th><lightning:outputField fieldName="TARepaymentModel__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Tuition_Assistance_Advising__c" /></th>
+                                <th><lightning:outputField fieldName="TAReimbursementMethod__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Tuition_Assistance_Network__c" /></th>
+                                <th><lightning:outputField fieldName="TAReimbursementAmount__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Tuition_Assistance_Plat__c" /></th>
+                                <th><lightning:outputField fieldName="Loan_Repayment_Advising__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="Other_Tuition_Assistance_PV__c" /></th>
+                                <th><lightning:outputField fieldName="Loan_Repayment_Administration__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="EA_MobileApp__c" /></th>
+                                <th><lightning:outputField fieldName="Loan_Repayment_url__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="EA_MobileAppCode__c" /></th>
+                                <th><lightning:outputField fieldName="Loan_Repayment_Plat__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="EdAssist_UniqueClientID__c" /></th>
+                                <th><lightning:outputField fieldName="Other_Loan_Repayment_Plat__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="TA_BenefitResetDate__c" /></th>
+                                <th><lightning:outputField fieldName="EA_LRBenefitResetDate__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="EdAssistPlatformSSO__c" /></th>
+                                <th><lightning:outputField fieldName="EA_LRReimbursementAmount__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="EA_MandatoryAdvising__c" /></th>
+                                <th><lightning:outputField fieldName="EA_VirtualEdFairParticipation__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="EA_CoveredPrograms__c" /></th>
+                                <th><lightning:outputField fieldName="EA_VirtualEdFairExpirationDate__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="EAPathwaysOffered__c" /></th>
+                                <th><lightning:outputField fieldName="VirtualEdFairParticipationforNurses__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="EA_AvailablePathways__c" /></th>
+                                <th><lightning:outputField fieldName="VirtualEdFairNursesExpirationDate__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="EdAssistScholars__c" /></th>
+                                <th><lightning:outputField fieldName="ScholarsReimbursementAmount__c" /></th>
+                            </tr>
+                            <tr>
+                                <th><lightning:outputField fieldName="EA_EmpServicesEmail__c" /></th>
+                                <th><lightning:outputField fieldName="Student_Loan_Repayment_Launch_Date__c" /></th>
+                            </tr>
+                        </table>
+                    </div>
+                </lightning:recordViewForm>
+            </div>
+            
+            <div class="slds-page-header"  style="cursor: pointer;" onclick="{!c.sectionEleven}">
+                
+                <section class="slds-clearfix">
+                    <div class="slds-float--left"> 
+                        <lightning:icon class="slds-hide" aura:id="articleEleven" iconName="utility:add" size="x-small" alternativeText="Indicates add"/>
+                        <lightning:icon class="slds-show" aura:id="articleEleven" iconName="utility:dash" size="x-small" alternativeText="Indicates dash"/>
+                    </div>
+                    <div class="slds-m-left--large">User Co-Pay</div>
+                </section>
+            </div>
+            
+            
+            <div class="slds-show slds-p-around--medium" aura:id="articleEleven">
+                <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+                    <thead> 
+                        <div>
+                            <tr class="slds-text-heading--label">
+                                <td><ui:inputText label="Search CoPay" class="field" value="{!v.copayName}"/></td>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <td><lightning:buttonGroup >
+                                    <lightning:button label="Search" onclick="{!c.SearchCopay}"/>
+                                    <lightning:button label="Clear" onclick="{!c.ClearCopay}"/>                            
+                                    </lightning:buttonGroup>
+                                </td>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <td class="slds-align_absolute-right">Create New Co-Pay <lightning:buttonMenu variant="container" onselect="{!c.createRecord}">
+                                    <lightning:menuItem value="BUCA_ITP_Program" label="BUCA ITP Program" />
+                                    <lightning:menuItem value="BUCA_Program_1" label="BUCA Program 1" />
+                                    <!--lightning:menuItem value="BUCA_Program_2" label="BUCA Program 2" /-->
+                                    <!--lightning:menuItem value="BUCA_Program_3" label="BUCA Program 3" /-->
+                                    </lightning:buttonMenu>
+                                </td>
+                            </tr>
+                        </div>
+                        <tr class="slds-text-heading--label">
+                            <th scope="col"><div class="slds-truncate" title="User Copay ID">User Copay ID</div></th>
+                            <!--th scope="col"><div class="slds-truncate" title="Copay Group Name">Copay Group Name</div></th-->
+                            <th scope="col"><div class="slds-truncate" title="Child Center Copay">Child Center Copay</div></th>   
+                            <th scope="col"><div class="slds-truncate" title="Family Center Copay">Family Center Copay</div></th> 
+                            <th scope="col"><div class="slds-truncate" title="In-Home Copay">In-Home Copay</div></th> 
+                            <th scope="col"><div class="slds-truncate" title="# Use"># Use</div></th> 
+                            <th scope="col"><div class="slds-truncate" title="Use Per">Use Per</div></th> 
+                            <th scope="col"><div class="slds-truncate" title="Use Count">Use Count</div></th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:if isTrue="{!v.isSearchCoPay == 'False'}"><aura:iteration items="{!v.copay}" var="itc" indexVar="index">
+                            <tr>
+                                
+                                <td> <ui:outputText aura:id="div1" value="{!itc.Name}"/></td>
+                                <!--td> <ui:outputText value="{!itc.Copay_Group_Name__c}"/></td-->
+                                <td> <ui:outputText value="{!itc.Child_Center_Copay__c}"/></td>
+                                <td> <ui:outputText value="{!itc.Family_Center_Copay__c}"/></td>
+                                <td> <ui:outputText value="{!itc.In_Home_Copay__c}"/></td>
+                                <td> <ui:outputText value="{!itc.Number_of_Uses__c}"/></td>
+                                <td> <ui:outputText value="{!itc.Use_Per__c}"/></td>
+                                <td> <ui:outputText value="{!itc.Use_Count__c}"/></td>
+                                
+                                <td>
+                                    <lightning:buttonMenu variant="container" value="{!itc.Id}" alternativeText="Show menu" onselect="{! c.handleSelect }">
+                                        <lightning:menuItem value="Edit" aura:id="edit" label="Edit" />
+                                        <lightning:menuItem value="Delete" label="Delete" />
+                                    </lightning:buttonMenu>
+                                </td>
+                            </tr>
+                            </aura:iteration> </aura:if>
+                        <aura:if isTrue="{!v.isSearchCoPay == 'True'}"><aura:iteration items="{!v.copay}" var="copay" indexVar="index">
+                            <tr>
+                                
+                                <td> <ui:outputText value="{!copay.Name}"/></td>
+                                <!--td> <ui:outputText value="{!copay.Copay_Group_Name__c}"/></td-->
+                                <td> <ui:outputText value="{!copay.Child_Center_Copay__c}"/></td>
+                                <td> <ui:outputText value="{!copay.Family_Center_Copay__c}"/></td>
+                                <td> <ui:outputText value="{!copay.In_Home_Copay__c}"/></td>
+                                <td> <ui:outputText value="{!copay.Number_of_Uses__c}"/></td>
+                                <td> <ui:outputText value="{!copay.Use_Per__c}"/></td>
+                                <td> <ui:outputText value="{!copay.Use_Count__c}"/></td>                    
+                                <td>
+                                    
+                                    <lightning:buttonMenu variant="container" value="{!copay.Id}" alternativeText="Show menu" onselect="{! c.handleSelect }">
+                                        <lightning:menuItem value="Edit" aura:id="edit" label="Edit" />
+                                        <lightning:menuItem value="Delete" label="Delete" />
+                                    </lightning:buttonMenu>
+                                </td>
+                            </tr>
+                            </aura:iteration> </aura:if>
+                        <tr style="align:center">
+                            <a href="{!'/lightning/r/'+ v.recordId + '/related/User_Copay_Infant_Trans_Addtl_Uses__r/view?0.source=aloha'}" target="_blank">View All</a>
+                        </tr>
+                    </tbody> 
+                    <!-- <tfoot class="slds-align_absolute-Center"> <a href="/one/one.app?source=alohaHeader#/sObject/0019000001tfogIAAQ/rlName/Contacts/view" target="_blank" class="slds-type-focus">
+             <span class="slds-section__title slds-align_absolute-Center">View All</span></a> </tfoot> -->
+                </table>
+            </div>   
+            
+            <div class="slds-page-header"  style="cursor: pointer;" onclick="{!c.sectionTweleve}">
+                
+                <section class="slds-clearfix">
+                    <div class="slds-float--left"> 
+                        <lightning:icon class="slds-hide" aura:id="articleTweleve" iconName="utility:add" size="x-small" alternativeText="Indicates add"/>
+                        <lightning:icon class="slds-show" aura:id="articleTweleve" iconName="utility:dash" size="x-small" alternativeText="Indicates dash"/>
+                    </div>
+                    <div class="slds-m-left--large">College Coach Topic Elections</div>
+                </section>
+            </div>
+            
+            
+            <div class="slds-show slds-p-around--medium" aura:id="articleTweleve">
+                <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+                    <thead> 
+                        
+                        <div> 
+                            <tr class="slds-text-heading--label">
+                                <td ><ui:inputText label="Search Ccoach" class="field" value="{!v.ccoachName}"/></td>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <td><lightning:buttonGroup >
+                                    <lightning:button label="Search" onclick="{!c.SearchCcoach}"/>
+                                    <lightning:button label="Clear" onclick="{!c.ClearCcoach}"/>                            
+                                    </lightning:buttonGroup>
+                                </td>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <td class="slds-align_absolute-right">Create New College Coach <lightning:buttonMenu variant="container" onselect="{!c.createCCoachRecord}">
+                                    <lightning:menuItem value="CC_Core_Topics" label="CC Core Topics" />
+                                    <lightning:menuItem value="CC_Spotlight_Topics" label="CC Spotlight Topics" />
+                                    </lightning:buttonMenu>
+                                </td>
+                            </tr>
+                        </div>
+                        
+                        <aura:if isTrue="{!v.isSearchCcoach == '01237000000TR6YAAW'}">
+                            <tr class="slds-text-heading--label">
+                                <th scope="col"><div class="slds-truncate" title="COLLEGE COACH TOPIC \n ELECTIONS ID">COLLEGE COACH TOPIC ELECTIONS ID</div></th>
+                                <th scope="col"><div class="slds-truncate" title="RECORD TYPE">RECORD TYPE</div></th>
+                                <th scope="col"><div class="slds-truncate" title="Last Modified By">Last Modified By</div></th>   
+                                <th scope="col"><div class="slds-truncate" title="Last Modified Date	">Last Modified Date</div></th> 
+                            </tr>
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.isSearchCcoach == '01237000000TR6ZAAW'}">
+                            <tr class="slds-text-heading--label">
+                                <th scope="col"><div class="slds-truncate" title="COLLEGE COACH TOPIC \n ELECTIONS ID">COLLEGE COACH\nTOPIC ELECTIONS ID</div></th>
+                                <th scope="col"><div class="slds-truncate" title="RECORD TYPE">RECORD TYPE</div></th>
+                                <th scope="col"><div class="slds-truncate" title="Last Modified By">Last Modified By</div></th>   
+                                <th scope="col"><div class="slds-truncate" title="Last Modified Date">Last Modified Date</div></th> 
+                            </tr>
+                        </aura:if>
+                    </thead>
+                    <tbody>
+                        
+                        <aura:if isTrue="{!v.isSearchCcoach == '01237000000TR6YAAW'}"><aura:iteration items="{!v.ccoach}" var="ccoach" indexVar="index">
+                            <tr>
+                                
+                                <td> <ui:outputText value="{!ccoach.Name}"/></td>
+                                <td> <ui:outputText value="{!ccoach.RecordType.Name}"/></td>
+                                <td> <ui:outputText value="{!ccoach.lastmodifiedby.name}"/></td>
+                                <td> <ui:outputText value="{!ccoach.lastmodifieddate}"/></td>
+                                
+                                <td>
+                                    <lightning:buttonMenu variant="container" value="{!ccoach.Id}" alternativeText="Show menu" onselect="{! c.handleSelect }">
+                                        <lightning:menuItem value="Edit" label="Edit" />
+                                        <lightning:menuItem value="Delete" label="Delete" />
+                                    </lightning:buttonMenu>
+                                </td>
+                            </tr>
+                            </aura:iteration> </aura:if>
+                        
+                        <aura:if isTrue="{!v.isSearchCcoach == '01237000000TR6ZAAW'}"><aura:iteration items="{!v.ccoach}" var="coach" indexVar="index">
+                            <tr>
+                                
+                                <td> <ui:outputText value="{!coach.Name}"/></td>
+                                <td> <ui:outputText value="{!coach.RecordType.Name}"/></td>
+                                <td> <ui:outputText value="{!coach.lastmodifiedby.name}"/></td>
+                                <td> <ui:outputText value="{!coach.lastmodifieddate}"/></td>
+                                
+                                <td>
+                                    <lightning:buttonMenu variant="container" value="{!coach.Id}" alternativeText="Show menu" onselect="{! c.handleSelect }">
+                                        <lightning:menuItem value="Edit" aura:id="edit" label="Edit" />
+                                        <lightning:menuItem value="Delete" label="Delete" />
+                                    </lightning:buttonMenu>
+                                </td>
+                            </tr>
+                            </aura:iteration> </aura:if>
+                        
+                        <tr style="align:center">
+                            <a href="{!'/lightning/r/'+ v.recordId + '/related/College_Coach_Topic_Elections__r/view?0.source=aloha'}" target="_blank">View All</a>
+                        </tr>
+                    </tbody>   
+                </table>
+                <!--<tfoot class="slds-align_absolute-Center"> <a href="/one/one.app?source=alohaHeader#/sObject/0019000001tfogIAAQ/rlName/Contacts/view" target="_blank" class="slds-type-focus">
+             <span class="slds-section__title slds-align_absolute-Center">View All</span></a> </tfoot>-->
+            </div>       
+            
+        </div>
+    </aura:iteration> 
+</aura:component>

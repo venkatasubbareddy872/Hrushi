@@ -1,0 +1,15 @@
+<apex:page standardController="Agent__c" extensions="AgentImage">
+    <apex:form >
+        <apex:pageBlock >
+        <table>
+            <tr>
+                <td align="right">
+                    <apex:outputPanel rendered="{!checkimage}">
+                     <apex:image height="100" width="150" value="{!URLFOR($Action.Attachment.Download,attachmentid)}"/>
+                     </apex:outputPanel>
+                </td>
+             </tr>
+          </table>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,50 @@
+<apex:page showHeader="false" sidebar="false" standardController="Account">
+   <apex:includeScript value="/support/console/20.0/integration.js"/>
+   <script type="text/javascript">     
+
+       var openSubtabTimer = null;
+       var i = 0;
+       function openGoogleSubtab() {
+       
+           // Use the results primary tab id and open a new subtab 
+           var openSubtab = function(result) { 
+                var tabname = '';
+                if(i == 0)   
+                  tabname ='s1';   
+                else
+                   tabname ='s2';       
+                   alert(tabname); 
+                   alert(result.id); 
+                sforce.console.openSubtab(result.id,'/apex/BRSCS_NonConsumerSubTab',false,tabname);  
+                i = i +1;         
+                clearTimeout(openSubtabTimer);
+            };
+            // Get the enclosing primary tab id. The openSubtab method is set as the callback
+            sforce.console.getEnclosingPrimaryTabId(openSubtab);
+       }       
+      
+       var previousOnload = window.onload;        
+       window.onload = function() { 
+            if (previousOnload) { 
+                previousOnload();
+            }                
+           openSubtabTimer = setTimeout('openGoogleSubtab()', '10000'); 
+       }
+   </script>
+   <apex:form id="theForm">
+       <apex:outputPanel >
+        <center>
+           
+            
+           
+            <A HREF="#" onClick="openGoogleSubtab();return false" reRender="theForm" title="Transaction History">Transaction History</A> &nbsp;&nbsp; 
+            <A HREF="#" onClick="openGoogleSubtab();return false"  reRender="theForm" title="ODP">ODP</A> &nbsp;&nbsp; 
+            <A HREF="#" onClick="openGoogleSubtab();return false" title="Stop Payments">Stop Payments</A> &nbsp;&nbsp; 
+            <A HREF="#" onClick="openGoogleSubtab();return false" title="Notes">Notes</A> &nbsp;&nbsp;
+            
+        </center>
+        <br/>
+        
+    </apex:outputPanel>
+   </apex:form>
+</apex:page>

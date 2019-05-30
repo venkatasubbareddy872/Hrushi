@@ -1,0 +1,54 @@
+<apex:page standardController="Agent__c" sidebar="false" extensions="AgentInformation">
+    <apex:form >
+        <apex:pageBlock >
+        <apex:pageBlockButtons ><apex:commandButton value="Save" action="{!save}"/><apex:commandButton value="Savew & New" action="{!SaveNew}"/><apex:commandButton value="Cancel" action="{!cancel}"/></apex:pageBlockButtons>
+        <table width="100%"><tr><td style="text-indent:120pt"><b>Agent Id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><b><apex:outputField value="{!Agent__c.name}"/></b></td><td align="right"><b>Choose Agent Image Here</b><apex:inputFile value="{!imagefile}" title="Choose Image"></apex:inputFile> </td></tr></table>
+            <apex:pageblockSection title="Agent Information">
+                <apex:inputField value="{!Agent__c.Agent_Name__c}"/> 
+                <apex:inputField value="{!Agent__c.Cader__c}"/>
+                <apex:inputField value="{!Agent__c.Father_Husband_Name__c}"/> 
+                <apex:inputField value="{!Agent__c.Branch_Code__c}"/> 
+                <apex:inputField value="{!Agent__c.Introducer_Code__c}" required="true"/> 
+                <apex:inputField value="{!Agent__c.Age__c}"/> 
+                <apex:inputField value="{!Agent__c.Phone__c}"/>
+                <apex:inputField value="{!Agent__c.Date_of_Joining__c}"/> 
+                <apex:inputField value="{!Agent__c.Mobile_No__c}"/> 
+                <apex:inputField value="{!Agent__c.Date_of_Birth__c}"/>
+                <apex:inputField value="{!Agent__c.Issuing_Officer__c}" required="true"/>
+            </apex:pageblockSection><br/>
+            
+            <apex:pageblockSection >
+                <apex:inputField value="{!Agent__c.Bank_Name__c}"/> 
+                <apex:inputField value="{!Agent__c.Pan_Card_No__c}"/> 
+                <apex:inputField value="{!Agent__c.Branch__c}"/> 
+                <apex:inputField value="{!Agent__c.Nationality__c}"/> 
+                <apex:inputField value="{!Agent__c.Account_Number__c}"/> 
+            </apex:pageblockSection><br/>
+            
+             <apex:pageblockSection >
+                <apex:inputField value="{!Agent__c.Permanent_Street__c}"/> 
+                <apex:inputField value="{!Agent__c.Present_Street__c}"/> 
+                <apex:inputField value="{!Agent__c.Permanent_City__c}"/> 
+                <apex:inputField value="{!Agent__c.Present_City__c}"/> 
+                <apex:inputField value="{!Agent__c.Permanent_State__c}"/> 
+                <apex:inputField value="{!Agent__c.Present_State__c}"/> 
+                <apex:inputField value="{!Agent__c.Permanent_Postal_Code__c}"/> 
+                <apex:inputField value="{!Agent__c.Present_Postal_Code__c}"/> 
+                <apex:inputField value="{!Agent__c.Permanent_Country__c}"/>
+                <apex:inputField value="{!Agent__c.Present_Country__c}"/>  
+            </apex:pageblockSection><br/>
+            
+            <apex:pageblockSection >
+                <apex:inputField value="{!Agent__c.Nominee_Name__c}"/> 
+                <apex:inputField value="{!Agent__c.Nominee_Street__c}"/> 
+                <apex:inputField value="{!Agent__c.Nominee_Relationship__c}"/>
+                <apex:inputField value="{!Agent__c.Nominee_City__c}"/> 
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                <apex:inputField value="{!Agent__c.Nominee_State__c}"/> 
+                 <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                <apex:inputField value="{!Agent__c.Nominee_Postal_Code__c}"/> 
+               
+           </apex:pageblockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

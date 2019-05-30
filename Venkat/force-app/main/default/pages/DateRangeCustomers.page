@@ -1,0 +1,23 @@
+<apex:page controller="DaterangeCustomers">
+    <apex:form >
+        <apex:pageBlock >
+        MODE<apex:selectList id="chooseColor" value="{!mode}" size="1">
+            <apex:selectOption itemValue="NEW" itemLabel="NEW"/>
+            <apex:selectOption itemValue="RENEWAL" itemLabel="RENEWAL"/>
+        </apex:selectList> 
+
+            From <apex:inputField value="{!customer.Joining_Date__c}"/>  To <apex:inputField value="{!customer.Date_of_Birth__c}"/> <apex:commandButton value="Search" action="{!Search}"/>
+        </apex:pageBlock>
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!CustomerList}" var="Clist">
+                <apex:column value="{!Clist.name}"/>
+                <apex:column value="{!Clist.Agent_Id__c}"/>
+                <apex:column value="{!Clist.IPP_Plans__c}"/>
+                <apex:column value="{!Clist.Joining_Date__c}"/>
+                <apex:column value="{!Clist.Paid_Total_Amount__c}"/>
+                <apex:column value="{!Clist.Branch_Code__c}"/>
+               
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

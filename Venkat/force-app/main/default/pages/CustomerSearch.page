@@ -1,0 +1,39 @@
+<apex:page sidebar="false" controller="searchinformatiom">
+<apex:form >
+
+    <apex:pageblock title="Seaching for Customer's " > 
+  
+                   Agent Code <apex:inputText value="{!AgentName}"> <apex:actionSupport event="onkeyup" reRender="AList"  action="{!search}"/></apex:inputText>
+                   Customer Code <apex:inputtext value="{!CustomerName}"><apex:actionSupport event="onkeyup" reRender="AList"  action="{!search}"/></apex:inputText>
+               
+               
+               <apex:pageBlock id="AList">
+               <apex:outputPanel >
+                   <apex:pageBlockTable value="{!Agentlist}" var="AL">
+                       <apex:column value="{!AL.Name}"/>
+                       <apex:column value="{!AL.Agent_Name__c}"/>
+                       <apex:column value="{!AL.Phone__c}"/>
+                         
+                       <apex:column value="{!AL.Introducer_Code__c}"/>
+                   </apex:pageBlockTable>
+               </apex:outputPanel>
+               
+               <apex:outputPanel >
+                   <apex:pageBlockTable VAlue="{!Customerlist}" var="CL">
+                       <apex:column value="{!CL.name}"/>
+                       <apex:column value="{!CL.Customer_Name__c}"/>
+                      <apex:column value="{!CL.Customer_Phone_No__c}"/>
+                      <apex:column value="{!CL.Agent_Id__c}"/>
+                       <apex:column value="{!CL.Total_Amount__c}"/>
+                   </apex:pageBlockTable>
+               </apex:outputPanel>
+               </apex:pageBlock>
+              
+          
+          
+    
+                 
+    </apex:pageblock>       
+               
+</apex:form>                   
+</apex:page>

@@ -1,0 +1,18 @@
+<apex:page controller="AccountController">
+    <apex:form >
+        <apex:pageMessages ></apex:pageMessages>
+        <apex:pageBlock title="Accounts List">
+            
+                <center> <apex:commandButton value="Disable Contacts" action="{!disabledSelectedContacts}" /> </center>
+            
+            <apex:pageblockTable value="{!wrapperList}" var="w">
+                <apex:column headerValue="Checked">
+                    <apex:inputCheckbox value="{!w.Checked}" />
+                </apex:column>
+                <apex:column headerValue="Account Name" value="{!w.acc.Name}" />
+                    
+            </apex:pageblockTable>
+        </apex:pageBlock>
+    </apex:form>
+  
+</apex:page>
