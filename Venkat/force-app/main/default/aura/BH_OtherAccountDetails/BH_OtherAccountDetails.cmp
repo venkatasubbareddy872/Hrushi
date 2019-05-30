@@ -15,7 +15,7 @@
     <aura:handler event="force:refreshView" action="{!c.doInit}" />
     <lightning:button label="Print" onclick="{!c.print}"/>
     <ui:button class="btn" label="Edit" press="{!c.editRecord}"/>      
-    
+     
     <aura:iteration items="{!v.Acc}" var="itm">
         <div class="slds-p-around--large">
             
